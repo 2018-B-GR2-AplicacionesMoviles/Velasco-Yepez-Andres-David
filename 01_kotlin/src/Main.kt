@@ -2,7 +2,8 @@
  * You can edit, run, and share this code.
  * play.kotlinlang.org
  */
-//package java.util.Date;
+
+package Java.util.Date
 
 fun main(args: Array<String>) {
     System.out.println("Hola mundo");
@@ -32,19 +33,24 @@ fun main(args: Array<String>) {
 
     var bono = if (casado) 1000.00 else 0.00;
     val sueldoTotal = calcularSueldo(bono);
-    println(sueldoTotal);
+    println(sueldoTotal)
     val andres = Usuario("Andres", "Velasco","Yepez")
     println(andres)
+    
+    println(BaseDeDatos.Usuarios) // []
+    BaseDeDatos.agregarUsuario("Andres")
+    println(BaseDeDatos.Usuarios) // ["Adrian]
+
 }
 
 fun calcularSueldo(bono:Double): Double{
     var sueldo =  10.1
-    return sueldo + bono;
+    return sueldo + bono
 }
 
 class Usuario(public val nombre: String){ // 1er constructor
-    public var apellido: String? = null
-    public var apellidoMaterno: String? = null
+    var apellido: String? = null
+    var apellidoMaterno: String? = null
     constructor(vNombre: String, vApellido: String,vApellidoMaterno: String):this(vNombre){ // llamar al primer constructor
         this.apellido= vApellido
         this.apellidoMaterno = vApellidoMaterno
@@ -61,3 +67,49 @@ class Usuario(public val nombre: String){ // 1er constructor
         return "Hola ${this.nombre} $apellidoMayusculas $apellidoMaternoMayusculas"
     }
 }
+//Para que sea heredable
+open class Animal(var nombre: String){
+
+}
+//No se pone el var, porque fue definido en la clase padre,
+class Tortuga(nombre:String,var pesoCaparazon:Double): Animal(nombre){
+    //Se ejectuta segundo
+    init {
+        println("$nombre $pesoCaparazon")
+    }
+}
+
+var animal = Animal("Caballo")
+var george = Tortuga("George",12.5)
+
+class Ejemplo{
+    var nombre: String
+    //Se ejecuta segundo, no es constructor primario
+    constructor(nNombre:String){
+        println("Estoy en el constructor ")
+        nombre = nNombre
+    }
+    //Se ejectuta primero
+    init {
+        println("Estoy en el INIT")
+    }
+}
+
+val ejemplo = Ejemplo("Andres")
+
+
+class BaseDeDatos{
+    companion object {
+        val Usuarios: ArrayList<String> = ArrayList()
+                fun agregarUsuario(nombre:String){
+                    Usuarios.add(nombre)
+                }
+    }
+}
+
+fun datosIniciales(){
+    //Cargar los datos Iniciales
+    BaseDeDatos.agregarUsuario("Juan")
+}
+
+
