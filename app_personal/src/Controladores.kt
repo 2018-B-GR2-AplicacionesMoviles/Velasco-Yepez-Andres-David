@@ -41,11 +41,19 @@ class AppController {
             BaseDeDatos.agregarFacturas(factura)
             var reporte = ""
             for (detalle in ListaDetalles) {
-                reporte += detalle
+                reporte += "\n"+detalle
             }
 
             reporte += "___________________________________:\n Total: ${total}"
             return reporte
+        }
+
+        fun totalCarrito():Double{
+            var total: Double = 0.00
+            for (pelicula in carritoCompra){
+                total += pelicula.precio
+            }
+            return  total
         }
     }
 }
