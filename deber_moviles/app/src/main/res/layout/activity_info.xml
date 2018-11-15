@@ -35,6 +35,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic[0]" />
+        tools:src="@drawable/ic_launcher_foreground" />
+
+    <Switch
+        android:id="@+id/color_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Oscuro"
+        app:layout_constraintEnd_toEndOf="@+id/img_btn"
+        app:layout_constraintStart_toStartOf="@+id/img_btn"
+        app:layout_constraintTop_toBottomOf="@+id/info_txt"
+        tools:ignore="MissingConstraints" />
+
+    <RatingBar
+        android:id="@+id/rating_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/img_btn"
+        app:layout_constraintStart_toStartOf="@+id/img_btn"
+        tools:layout_editor_absoluteY="529dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_intent_respuesta.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,21 @@ class MainActivity : AppCompatActivity() {
             irAPantallaDeBotonoes()
         }
 
+        boton_respuesta.setOnClickListener{
+            irApantallaDeRespuesta()
+        }
 
+
+
+    }
+
+    fun enviarRespuestaPropio(){
+
+    }
+
+    fun irApantallaDeRespuesta(){
+        val intentIrRespuesta = Intent(this,IntentRespuestaActivity::class.java)
+        this.startActivity(intentIrRespuesta)
     }
 
     fun irAPantallaDeBotonoes(){

@@ -87,11 +87,18 @@
     <RadioGroup
         android:layout_width="125dp"
         android:layout_height="169dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/estudiante_ck"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="@+id/estudiante_ck"
         app:layout_constraintTop_toBottomOf="@+id/estudiante_ck">
+
+        <RadioButton
+            android:id="@+id/es_otro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Otro" />
 
         <RadioButton
             android:id="@+id/es_femenino"

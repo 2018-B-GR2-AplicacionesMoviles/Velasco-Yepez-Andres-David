@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         if(estudiante_ck.isChecked){ocupacion="Estudiante"}
         if(es_femenino.isChecked){sexo="Femenino"}
         if(es_masculino.isChecked){sexo="Masculino"}
+        if(es_otro.isChecked){sexo="Otro"}
         if(nombre.isEmpty()){es_ok=false}
         if(fecha.isEmpty()){es_ok=false}
         if(correo.isEmpty()){es_ok=false}

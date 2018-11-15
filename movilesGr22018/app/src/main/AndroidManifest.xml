@@ -16,7 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ButtonActivity"></activity>
+        <activity android:name=".ButtonActivity" />
+        <intent-filter>
+            <action android:name="android.intent.action.SEND" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="text/plain"></data>
+        </intent-filter>
+        <activity android:name=".IntentRespuestaActivity"></activity>
     </application>
 
 </manifest>
