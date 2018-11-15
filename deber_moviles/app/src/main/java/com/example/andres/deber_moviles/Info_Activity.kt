@@ -22,6 +22,10 @@ class Info_Activity : AppCompatActivity() {
                     "\nSexo: ${sexo}" +
                     "\nFecha Nacimiento: ${fecha}"
         }
+
+        if(color_btn.isChecked){
+            img_btn.setBackgroundResource(R.drawable.icono_oscuro)
+        }
     }
 
     fun capturarDatosDelIntent(){
