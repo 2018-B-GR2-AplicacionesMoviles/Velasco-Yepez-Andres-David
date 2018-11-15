@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         boton_navegar.setOnClickListener{
-            /*Log.i("navegacion","Hola")
+           /* Log.i("navegacion","Hola")
             Log.w("navegacion","Hola")
             Log.d("navegacion","Hola")
             Log.e("navegacion","Hola")
