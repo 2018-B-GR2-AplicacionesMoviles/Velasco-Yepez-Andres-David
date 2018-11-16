@@ -94,4 +94,12 @@
         app:layout_constraintTop_toTopOf="@+id/boton_navegar"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/ciclo_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ciclo"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        tools:layout_editor_absoluteY="329dp" />
+
 </android.support.constraint.ConstraintLayout>
