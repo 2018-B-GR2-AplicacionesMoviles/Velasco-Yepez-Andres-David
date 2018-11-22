@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResultadoPropioActivity" />
-        <activity android:name=".CiclodeVida"></activity>
+        <activity android:name=".CicloVidaActivity"></activity>
     </application>
 
 </manifest>

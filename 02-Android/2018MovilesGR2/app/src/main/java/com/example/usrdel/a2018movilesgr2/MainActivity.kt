@@ -28,15 +28,18 @@ class MainActivity : AppCompatActivity() {
                     this.irAPantallaDeIntentRespuesta()
                 }
 
-        ciclo_btn
+        button_ciclo_vida
                 .setOnClickListener {
-                    this.irACiclo()
+                    this.irAPantallaCicloVida()
                 }
     }
 
-    fun irACiclo(){
-        val intentCiclodeVida = Intent(this,CiclodeVida::class.java)
-        this.startActivity(intentCiclodeVida)
+    fun irAPantallaCicloVida() {
+        val intentCicloVida = Intent(
+                this,
+                CicloVidaActivity::class.java
+        )
+        this.startActivity(intentCicloVida)
     }
 
     fun irAPantallaDeBotones() {
