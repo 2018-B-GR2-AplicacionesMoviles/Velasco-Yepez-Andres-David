@@ -95,11 +95,52 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/ciclo_btn"
+        android:id="@+id/button_ciclo_vida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ciclo"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        tools:layout_editor_absoluteY="329dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="C. Vida"
+        app:layout_constraintBottom_toBottomOf="@+id/boton_navegar"
+        app:layout_constraintStart_toEndOf="@+id/boton_navegar"
+        app:layout_constraintTop_toTopOf="@+id/boton_navegar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button_intent_parcelable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="int Parcelable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/boton_navegar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/boton_navegar"
+        app:layout_constraintTop_toBottomOf="@+id/boton_navegar"
+        app:layout_constraintVertical_bias="0.256" />
+
+    <Button
+        android:id="@+id/button_adaptador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Adaptadores"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_ciclo_vida"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="@+id/button_ciclo_vida"
+        app:layout_constraintTop_toBottomOf="@+id/button_ciclo_vida"
+        app:layout_constraintVertical_bias="0.256" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="421dp" />
 
 </android.support.constraint.ConstraintLayout>

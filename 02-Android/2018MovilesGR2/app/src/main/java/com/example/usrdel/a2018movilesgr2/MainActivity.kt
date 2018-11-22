@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,16 +29,47 @@ class MainActivity : AppCompatActivity() {
                     this.irAPantallaDeIntentRespuesta()
                 }
 
-        ciclo_btn
+        button_ciclo_vida
                 .setOnClickListener {
-                    this.irACiclo()
+                    this.irAPantallaCicloVida()
+                }
+        button_intent_parcelable
+                .setOnClickListener{
+                    this.irActividadIntent()
+                }
+        button_adaptador
+                .setOnClickListener{
+                    this.irActividadAdaptador()
                 }
     }
 
-    fun irACiclo(){
-        val intentCiclodeVida = Intent(this,CiclodeVida::class.java)
-        this.startActivity(intentCiclodeVida)
+    fun irActividadAdaptador(){
+        val intentActividad = Intent(
+                this,
+                AdaptadorActivity::class.java
+        )
+        this.startActivity(intentActividad)
     }
+    fun irActividadIntent(){
+        val intentActividad = Intent(
+                this,
+                ParcelableActivity::class.java
+        )
+
+        val adrian = Usuario("Andrian",29, Date(1989,6,10),12.00)
+        val cachetes = Mascota("cachetes",adrian)
+        intentActividad.putExtra("usuario",adrian)
+        intentActividad.putExtra("mascota",cachetes)
+        this.startActivity(intentActividad)
+    }
+    fun irAPantallaCicloVida() {
+        val intentCicloVida = Intent(
+                this,
+                CicloVidaActivity::class.java
+        )
+        this.startActivity(intentCicloVida)
+    }
+
 
     fun irAPantallaDeBotones() {
         // INTENT
