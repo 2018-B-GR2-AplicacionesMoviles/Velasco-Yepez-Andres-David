@@ -76,7 +76,6 @@ class CicloVidaActivity : AppCompatActivity() {
 
         outState?.run {
             putInt(SAVE_INSTANCE_STATE_CONTADOR, contador)
-
         }
 
         super.onSaveInstanceState(outState)

@@ -7,17 +7,66 @@
     tools:context=".AdaptadorActivity">
 
     <Spinner
-        android:id="@+id/snipper_usuarios"
-        android:layout_width="334dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/spinner_usuarios"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="252dp"
+        android:layout_height="256dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ListView
+            android:id="@+id/lista"
+            android:layout_width="186dp"
+            android:layout_height="252dp"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="243dp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="303dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_usuarios"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="@+id/spinner_usuarios"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_usuarios"
+        app:layout_constraintVertical_bias="0.053">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hola" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="mundo" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dentro de linearlayout" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
