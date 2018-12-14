@@ -3,7 +3,8 @@ package com.example.usrdel.a2018movilesgr2
 import android.os.Parcel
 import android.os.Parcelable
 
-class Mascota(var nombre:String,var usuario:Usuario):Parcelable{
+class Mascota(var nombre: String,
+              var usuario: Usuario):Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readParcelable(Usuario::class.java.classLoader)) {
