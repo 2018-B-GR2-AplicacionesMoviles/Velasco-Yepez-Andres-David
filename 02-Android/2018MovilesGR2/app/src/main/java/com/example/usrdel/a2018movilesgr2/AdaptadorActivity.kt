@@ -2,35 +2,46 @@ package com.example.usrdel.a2018movilesgr2
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_adaptador.*
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import android.util.Log
-import android.view.View
 
 class AdaptadorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adaptador)
-        val arregloUsuarios = ArrayList<Usuario>()
-        val usuario1=Usuario("adrian",29, Date(1989,10,21),12.00)
-        val usuario2=Usuario("pedro",30, Date(1939,10,21),34.00)
-        arregloUsuarios.add(usuario1)
-        arregloUsuarios.add(usuario2)
 
-        val adaptadorUsuarios=ArrayAdapter<Usuario>(
+        val arregloUsuarios = ArrayList<Usuario>();
+
+        val usuarioUno = Usuario(
+                "Adrian",
+                29,
+                Date(1989, 6, 10),
+                12.00)
+        val usuarioDos = Usuario(
+                "Vicente",
+                32,
+                Date(1912, 3, 23),
+                15.00)
+        arregloUsuarios.add(usuarioUno)
+        arregloUsuarios.add(usuarioDos)
+
+        // ADAPTADOR
+
+        val adaptadorUsuarios = ArrayAdapter<Usuario>(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
                 arregloUsuarios
         )
         // Seteo el adaptador
-        spinner.adapter = adaptadorUsuarios
+        spinner_usuarios.adapter = adaptadorUsuarios
 
         // Escucho evento
-        spinner
+        spinner_usuarios
                 .onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -51,5 +62,9 @@ class AdaptadorActivity : AppCompatActivity() {
                         Log.i("adaptador", "${parent}")
                     }
                 }
+
+
     }
+
+
 }

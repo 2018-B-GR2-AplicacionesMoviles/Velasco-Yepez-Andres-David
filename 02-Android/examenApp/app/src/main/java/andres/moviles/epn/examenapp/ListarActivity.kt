@@ -12,48 +12,35 @@ import java.util.ArrayList
 
 class ListarActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listar)
-        val arregloPelicula = BaseDeDatos.Peliculas;
+        //val arregloPelicula = BaseDeDatos.Peliculas;
+        var arregloPelicula = BaseDeDatos.Peliculas
 
 
-        val adaptadorPeliculas = ArrayAdapter<Pelicula>(
+        val adapter = ArrayAdapter<Pelicula>(
                 this,
-                android.R.layout.simple_spinner_dropdown_item,
-                arregloPelicula
+                android.R.layout.simple_list_item_1,
+                BaseDeDatos.Peliculas
         )
-        peliculas_view.adapter = adaptadorPeliculas
-        peliculas_view
-                .onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                            parent: AdapterView<*>?,
-                            view: View?,
-                            position: Int,
-                            id: Long) {
-                        Log.i("adaptador", "${parent}")
-                        Log.i("adaptador", "${view}")
-                        Log.i("adaptador", "${position}")
-                        Log.i("adaptador", "${id}")
-                        val pelicula = arregloPelicula[position]
-                        Log.i("adaptador", "${pelicula.nombre}")
-                        actualizar(pelicula)
-                    }
+        peliculas_view.adapter = adapter;
+        peliculas_view.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val pelicula = arregloPelicula[position]
+            enviar_pelicula(pelicula,position)
+        }
 
-                    override fun onNothingSelected(
-                            parent: AdapterView<*>?) {
-                        Log.i("adaptador", "${parent}")
-                    }
-                }
+
     }
 
-    fun actualizar(pelicula:Pelicula){
+    fun enviar_pelicula(pelicula: Pelicula,pos:Int){
         val intentActividadIntent = Intent(
                 this,
                 ModificarActivity::class.java
         )
         intentActividadIntent.putExtra("pelicula",pelicula)
+        intentActividadIntent.putExtra("pos",pos)
         startActivity(intentActividadIntent)
     }
 }

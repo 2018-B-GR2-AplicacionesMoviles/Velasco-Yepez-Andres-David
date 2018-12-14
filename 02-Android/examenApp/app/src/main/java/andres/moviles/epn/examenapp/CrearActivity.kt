@@ -20,7 +20,7 @@ class CrearActivity : AppCompatActivity() {
     }
 
     fun guardar(){
-        var pelicula= Pelicula(nombre = nombre_txt.toString(),director = Director_txt.toString(),genero = genero_txt.toString(),precio =precio_txt.toString())
+        var pelicula= Pelicula(nombre = nombre_txt.text.toString(),director = Director_txt.text.toString(),genero = genero_txt.text.toString(),precio =precio_txt.text.toString())
         BaseDeDatos.agregarPelicula(pelicula)
         val intentActividadIntent = Intent(
                 this,

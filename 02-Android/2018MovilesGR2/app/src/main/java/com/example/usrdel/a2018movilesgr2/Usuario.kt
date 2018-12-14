@@ -4,11 +4,15 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 
-final class Usuario(val nombre:String,var edad:Int,var fechaNacimiento:Date,var sueldo:Double):Parcelable {
-    constructor(parcel: Parcel) : this(parcel.readString(),
-                                        parcel.readInt(),
-                                        parcel.readSerializable() as Date,
-                                        parcel.readDouble()){
+class Usuario(public var nombre: String,
+              var edad: Int,
+              var fechaNacimiento: Date,
+              var sueldo: Double) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readInt(),
+            parcel.readSerializable() as Date,
+            parcel.readDouble()) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -22,6 +26,10 @@ final class Usuario(val nombre:String,var edad:Int,var fechaNacimiento:Date,var 
         return 0
     }
 
+    override fun toString(): String {
+        return "${nombre}"
+    }
+
     companion object CREATOR : Parcelable.Creator<Usuario> {
         override fun createFromParcel(parcel: Parcel): Usuario {
             return Usuario(parcel)
@@ -31,8 +39,7 @@ final class Usuario(val nombre:String,var edad:Int,var fechaNacimiento:Date,var 
             return arrayOfNulls(size)
         }
     }
-
-    override fun toString(): String {
-        return "${nombre}"
-    }
 }
+
+
+// val adrian = Usuario("asdasd")

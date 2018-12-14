@@ -33,35 +33,61 @@ class MainActivity : AppCompatActivity() {
                 .setOnClickListener {
                     this.irAPantallaCicloVida()
                 }
+
         button_intent_parcelable
-                .setOnClickListener{
-                    this.irActividadIntent()
+                .setOnClickListener {
+                    this.irActividadParcelableIntent()
                 }
+
         button_adaptador
-                .setOnClickListener{
+                .setOnClickListener {
                     this.irActividadAdaptador()
+                }
+
+        button_recycler_view
+                .setOnClickListener {
+                    this.irActividadRecyclerView()
                 }
     }
 
-    fun irActividadAdaptador(){
-        val intentActividad = Intent(
+    fun irActividadRecyclerView() {
+        val intent = Intent(
+                this,
+                ReciclerViewActivity::class.java
+        )
+        startActivity(intent)
+    }
+
+    fun irActividadAdaptador() {
+        val intentAdaptador = Intent(
                 this,
                 AdaptadorActivity::class.java
         )
-        this.startActivity(intentActividad)
+        startActivity(intentAdaptador)
     }
-    fun irActividadIntent(){
-        val intentActividad = Intent(
+
+    fun irActividadParcelableIntent() {
+        val intentActividadIntent = Intent(
                 this,
                 ParcelableActivity::class.java
         )
 
-        val adrian = Usuario("Andrian",29, Date(1989,6,10),12.00)
-        val cachetes = Mascota("cachetes",adrian)
-        intentActividad.putExtra("usuario",adrian)
-        intentActividad.putExtra("mascota",cachetes)
-        this.startActivity(intentActividad)
+        val adrian = Usuario(
+                "Adrian",
+                29,
+                Date(1989, 6, 10),
+                12.00)
+
+        val cachetes = Mascota("Cachetes", adrian)
+
+        intentActividadIntent.putExtra("usuario", adrian)
+        intentActividadIntent.putExtra("mascota", cachetes)
+
+        startActivity(intentActividadIntent)
+
+
     }
+
     fun irAPantallaCicloVida() {
         val intentCicloVida = Intent(
                 this,
@@ -69,7 +95,6 @@ class MainActivity : AppCompatActivity() {
         )
         this.startActivity(intentCicloVida)
     }
-
 
     fun irAPantallaDeBotones() {
         // INTENT
