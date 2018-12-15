@@ -48,8 +48,18 @@ class MainActivity : AppCompatActivity() {
                 .setOnClickListener {
                     this.irActividadRecyclerView()
                 }
+        fragmentos_btn
+                .setOnClickListener{
+                    this.irActividadFragmento()
+                }
     }
-
+    fun irActividadFragmento(){
+        val intent = Intent(
+                this,
+                FragmentActivity::class.java
+        )
+        startActivity(intent)
+    }
     fun irActividadRecyclerView() {
         val intent = Intent(
                 this,
