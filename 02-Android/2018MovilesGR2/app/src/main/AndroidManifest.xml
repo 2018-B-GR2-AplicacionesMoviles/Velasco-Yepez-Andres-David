@@ -31,7 +31,7 @@
         <activity android:name=".ParcelableActivity" />
         <activity android:name=".AdaptadorActivity" />
         <activity android:name=".ReciclerViewActivity" />
-        <activity android:name=".FragmentActivity"></activity>
+        <activity android:name=".FragmentosActivity"></activity>
     </application>
 
 </manifest>
