@@ -11,7 +11,7 @@ import com.example.andres.ezmoviesadmin.dummy.PeliculaContent.Pelicula
 
 class SqliteHelper(context: Context?) :
         SQLiteOpenHelper(context,
-                "moviles4", // Nombre de la base de datos
+                "moviles5", // Nombre de la base de datos
                 null,
                 1) {
 
@@ -42,6 +42,9 @@ class SqliteHelper(context: Context?) :
         val insertarCategoria2 = "Insert into categoria (nombre) values ('fantasia');"
         val insertarPelicula = "Insert into pelicula (nombre,id_categoria) values ('venom',1);"
         val insertarPelicula2 = "Insert into pelicula (nombre,id_categoria) values ('spiderman',1);"
+        val insertarActor = "Insert into actor (nombre) values ('Harrison Ford');"
+        val insertarActor2 = "Insert into actor (nombre) values ('Mia Khalifa');"
+
         baseDeDatos?.execSQL(crearTablaCategoria)
         baseDeDatos?.execSQL(crearTablaPelicula)
         baseDeDatos?.execSQL(crearTablaActor)
@@ -49,6 +52,8 @@ class SqliteHelper(context: Context?) :
         baseDeDatos?.execSQL(insertarCategoria2)
         baseDeDatos?.execSQL(insertarPelicula)
         baseDeDatos?.execSQL(insertarPelicula2)
+        baseDeDatos?.execSQL(insertarActor)
+        baseDeDatos?.execSQL(insertarActor2)
 
 
 
@@ -83,6 +88,7 @@ class SqliteHelper(context: Context?) :
 
         return respuestaUsuario
     }
+
     fun getCategorias(categorias: ArrayList<Categoria>){
         val statement = "select id_categoria, nombre from categoria;"
         val dbReadable = readableDatabase
@@ -100,6 +106,24 @@ class SqliteHelper(context: Context?) :
         dbReadable.close()
 
     }
+
+    fun getActores(actores:ArrayList<Actor>){
+        val statement = "select id_actor, nombre from actor;"
+        val dbReadable = readableDatabase
+        val resultado = dbReadable.rawQuery(statement, null)
+        actores.clear()
+
+        if (resultado.moveToFirst()) {
+            do {
+                actores.add(Actor(resultado.getString(0),resultado.getString(1)))
+            } while (resultado.moveToNext())
+        }
+
+        resultado.close()
+
+        dbReadable.close()
+    }
+
     fun getPeliculas(peliculas: ArrayList<PeliculaContent.Pelicula>){
         val statement = "select id_pelicula, pelicula.nombre, pelicula.id_categoria, categoria.nombre from pelicula,categoria where pelicula.id_categoria=categoria.id_categoria;"
 
@@ -207,11 +231,8 @@ class SqliteHelper(context: Context?) :
     }
 
     fun actualizarCategoria(id:String,nombre: String):Boolean{
-        // Base de datos de escritura
         val dbWriteable = writableDatabase
         val cv = ContentValues()
-
-        // Valores de los campos
 
         cv.put("nombre", nombre)
 
@@ -220,6 +241,25 @@ class SqliteHelper(context: Context?) :
                         "categoria", // Nombre de la tabla
                         cv, // Valores a actualizarse
                         "id_categoria=?", // Where
+                        arrayOf(id) // Parametros
+                )
+
+        dbWriteable.close()
+
+        return if (resultado.toInt() == -1) false else true
+    }
+
+    fun actualizarActor(id:String,nombre: String):Boolean{
+        val dbWriteable = writableDatabase
+        val cv = ContentValues()
+
+        cv.put("nombre", nombre)
+
+        val resultado = dbWriteable
+                .update(
+                        "actor", // Nombre de la tabla
+                        cv, // Valores a actualizarse
+                        "id_actor=?", // Where
                         arrayOf(id) // Parametros
                 )
 
@@ -246,6 +286,19 @@ class SqliteHelper(context: Context?) :
         val parametros = arrayOf(id)
         val nombreTabla = "categoria"
         val clausulaWhere = "id_categoria = ?"
+        val respuesta = dbWriteable.delete(
+                nombreTabla,
+                clausulaWhere,
+                parametros
+        )
+        return  if(respuesta == -1 )false else true
+    }
+
+    fun eliminarActor(id:String):Boolean{
+        val dbWriteable = this.writableDatabase
+        val parametros = arrayOf(id)
+        val nombreTabla = "actor"
+        val clausulaWhere = "id_actor = ?"
         val respuesta = dbWriteable.delete(
                 nombreTabla,
                 clausulaWhere,

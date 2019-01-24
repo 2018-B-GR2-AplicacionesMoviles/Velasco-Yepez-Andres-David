@@ -19,7 +19,7 @@ class NavegationActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                destruirFragmentoActual()
+                crearFragmentoTres()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -35,6 +35,12 @@ class NavegationActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
+    override fun onResume() {
+        super.onResume()
+        fragmentoActual = PeliculaFragment()
+        crearFragmentoUno()
+
+    }
     fun destruirFragmentoActual() {
         val fragmentManager = supportFragmentManager
         // Transacciones
@@ -93,6 +99,19 @@ class NavegationActivity : AppCompatActivity() {
 
 
         // Commit
+        fragmentTransaction.commit()
+
+    }
+    fun crearFragmentoTres() {
+        destruirFragmentoActual()
+
+        val fragmentManager = supportFragmentManager
+
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        val primerFragmento = ActorFragment()
+        fragmentTransaction.replace(R.id.relativeLayout, primerFragmento)
+        fragmentoActual = primerFragmento
         fragmentTransaction.commit()
 
     }

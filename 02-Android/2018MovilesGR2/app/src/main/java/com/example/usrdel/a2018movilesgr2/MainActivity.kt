@@ -52,6 +52,10 @@ class MainActivity : AppCompatActivity() {
                 .setOnClickListener {
                     this.irActividadFragmentos()
                 }
+        btn_http
+                .setOnClickListener {
+                    this.irAPantallaDeIntentHttp()
+                }
     }
 
     fun irActividadFragmentos() {
@@ -121,5 +125,13 @@ class MainActivity : AppCompatActivity() {
         val intentRespuesta = Intent(this, IntentRespuestaActivity::class.java)
         this.startActivity(intentRespuesta)
     }
+
+    fun irAPantallaDeIntentHttp() {
+        // INTENT
+        val intentRespuesta = Intent(this, HttpActivity::class.java)
+        this.startActivity(intentRespuesta)
+    }
+
+
 
 }
