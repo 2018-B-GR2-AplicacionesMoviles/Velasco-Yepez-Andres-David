@@ -77,7 +77,7 @@ class MyPeliculaRecyclerViewAdapter(
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         //val mIdView: TextView = mView.item_number
-        val mContentView: TextView = mView.content
+        val mContentView: TextView = mView.contenido
         val mCategoryView:TextView = mView.categoria
         val mBotonView:Button = mView.boton_modificar
 
