@@ -35,7 +35,8 @@
         <activity
             android:name=".NavegationActivity"
             android:label="@string/title_activity_navegation" />
-        <activity android:name=".ModificarCategoriaActivity"></activity>
+        <activity android:name=".ModificarCategoriaActivity" />
+        <activity android:name=".ModificarActorActivity"></activity>
     </application>
 
 </manifest>

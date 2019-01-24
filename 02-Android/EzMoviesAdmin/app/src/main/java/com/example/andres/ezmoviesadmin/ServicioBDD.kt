@@ -6,5 +6,6 @@ class BDD{
     companion object {
         val peliculas = ArrayList<PeliculaContent.Pelicula>()
         val categorias = ArrayList<Categoria>()
+        val actores = ArrayList<Actor>()
     }
 }

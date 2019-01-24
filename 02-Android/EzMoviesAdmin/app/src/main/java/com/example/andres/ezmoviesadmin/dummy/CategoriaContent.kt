@@ -30,7 +30,7 @@ object CategoriaContent {
         // Add some sample items.
 
     }
-
+/*
     private fun addItem(item: Categoria) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
@@ -44,7 +44,7 @@ object CategoriaContent {
             builder.append("\nMore details information here.")
         }
         return builder.toString()
-    }
+    }*/
 
     /**
      * A dummy item representing a piece of content.
