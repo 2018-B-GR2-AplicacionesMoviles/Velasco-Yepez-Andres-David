@@ -22,6 +22,10 @@ class NavegationActivity : AppCompatActivity() {
                 crearFragmentoTres()
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.comments_notifications ->{
+                crearFragmentoCuatro()
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }
@@ -110,6 +114,20 @@ class NavegationActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
 
         val primerFragmento = ActorFragment()
+        fragmentTransaction.replace(R.id.relativeLayout, primerFragmento)
+        fragmentoActual = primerFragmento
+        fragmentTransaction.commit()
+
+    }
+
+    fun crearFragmentoCuatro() {
+        destruirFragmentoActual()
+
+        val fragmentManager = supportFragmentManager
+
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        val primerFragmento = ComentarioFragment()
         fragmentTransaction.replace(R.id.relativeLayout, primerFragmento)
         fragmentoActual = primerFragmento
         fragmentTransaction.commit()

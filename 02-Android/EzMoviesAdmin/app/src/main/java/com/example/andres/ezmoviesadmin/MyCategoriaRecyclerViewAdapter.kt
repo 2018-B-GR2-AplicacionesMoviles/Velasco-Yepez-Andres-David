@@ -70,8 +70,8 @@ class MyCategoriaRecyclerViewAdapter(
     override fun getItemCount(): Int = mValues.size
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.item_number
-        val mContentView: TextView = mView.content
+        val mIdView: TextView = mView.id_comentario
+        val mContentView: TextView = mView.contenido
         val mBotonMod:Button = mView.btn_mod_categoria
 
         override fun toString(): String {

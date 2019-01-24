@@ -7,5 +7,6 @@ class BDD{
         val peliculas = ArrayList<PeliculaContent.Pelicula>()
         val categorias = ArrayList<Categoria>()
         val actores = ArrayList<Actor>()
+        var comentarios = ArrayList<Comentario>()
     }
 }

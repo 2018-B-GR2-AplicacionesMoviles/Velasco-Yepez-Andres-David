@@ -30,6 +30,7 @@
     <string name="title_home">Movies</string>
     <string name="title_dashboard">Categories</string>
     <string name="title_notifications">Actors</string>
+    <string name="comments_notifications">Comments</string>
     <string name="title_activity_nav">NavActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
