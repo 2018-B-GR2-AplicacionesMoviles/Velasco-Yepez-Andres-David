@@ -1,29 +1,23 @@
 package com.example.andres.ezmoviesadmin
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.JsonReader
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.beust.klaxon.Klaxon
+import com.beust.klaxon.TypeFor
 import com.example.andres.ezmoviesadmin.BDD.Companion.comentarios
 import com.github.kittinunf.fuel.httpGet
 
 import com.example.andres.ezmoviesadmin.dummy.ComentarioContent
-import com.github.kittinunf.result.success
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import java.io.StringReader
+import com.github.kittinunf.result.Result
+
 import java.util.ArrayList
-import com.google.gson.JsonParser
-import com.google.gson.JsonElement
-
-
 
 
 /**
@@ -40,7 +34,7 @@ class ComentarioFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getComentarios()
+        getComentarios(comentarios)
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
@@ -70,21 +64,26 @@ class ComentarioFragment : Fragment() {
     }
 
 
-    fun getComentarios(){
-        val url = "http://192.168.1.52:1337/Comentario"
+    fun getComentarios(comentarios: ArrayList<Comentario>){
+        val url = "http://172.29.65.234:1337/Comentario"
         url.httpGet().responseString{request, response, result ->
-            //Log.i("http","Request: $request")
-            ///Log.i("http","Request: $response")
-            Log.i("http-r","Request: ${result}")
-            //val resultado = JsonParser().parse(result.toString())
-            //var jobject = resultado.getAsJsonObject()
-            //jobject = jobject.getAsJsonObject("Success")
-            //Log.i("http-a","Request: ${jobject}")
+            when (result) {
+                is Result.Failure -> {
+                    val ex = result.getException()
+                }
+                is Result.Success -> {
+                    val data = result.get()
+                    comentarios.clear()
+                    val wordDict = Klaxon().parseArray<Comentario>(data)
+                    Log.i("http", "Datos: ${wordDict.toString()}")
+                    if (wordDict != null) {
+                        for ( coment in wordDict.iterator()){
+                                comentarios.add(coment)
+                        }
+                    }
 
-           // comentarios.clear()
-            //val gson = Gson()
-            //comentarios = gson.fromJson(result.toString(), ArrayList<Comentario>()::class.java)
-            //Log.i("http-a","${comentarios}")
+                }
+            }
 
         }
     }

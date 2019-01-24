@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,7 @@ class ActorFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val helper = SqliteHelper(context)
         helper.getActores(actores)
+        Log.i("actor", actores.toString())
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
