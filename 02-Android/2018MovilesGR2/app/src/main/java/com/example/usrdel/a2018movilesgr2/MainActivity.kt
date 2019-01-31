@@ -52,10 +52,44 @@ class MainActivity : AppCompatActivity() {
                 .setOnClickListener {
                     this.irActividadFragmentos()
                 }
-        btn_http
+        button_http
                 .setOnClickListener {
-                    this.irAPantallaDeIntentHttp()
+                    this.irActividadHttp()
                 }
+
+        button_menu
+                .setOnClickListener {
+                    this.irActividadMenu()
+                }
+        btn_go
+                .setOnClickListener {
+                    this.irActividadGo()
+                }
+    }
+
+    fun irActividadMenu(){
+        val intent = Intent(
+                this,
+                Menu2Activity::class.java
+        )
+        startActivity(intent)
+    }
+
+    fun irActividadGo(){
+        val intent = Intent(
+                this,
+                GoogleActivity::class.java
+        )
+        startActivity(intent)
+    }
+
+
+    fun irActividadHttp(){
+        val intent = Intent(
+                this,
+                HttpActivity::class.java
+        )
+        startActivity(intent)
     }
 
     fun irActividadFragmentos() {
@@ -125,13 +159,5 @@ class MainActivity : AppCompatActivity() {
         val intentRespuesta = Intent(this, IntentRespuestaActivity::class.java)
         this.startActivity(intentRespuesta)
     }
-
-    fun irAPantallaDeIntentHttp() {
-        // INTENT
-        val intentRespuesta = Intent(this, HttpActivity::class.java)
-        this.startActivity(intentRespuesta)
-    }
-
-
 
 }

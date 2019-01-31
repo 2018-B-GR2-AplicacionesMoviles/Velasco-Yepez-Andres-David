@@ -16,8 +16,8 @@ import com.github.kittinunf.fuel.httpGet
 
 import com.example.andres.ezmoviesadmin.dummy.ComentarioContent
 import com.github.kittinunf.result.Result
-
-import java.util.ArrayList
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 /**
@@ -34,7 +34,7 @@ class ComentarioFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getComentarios(comentarios)
+
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
@@ -64,29 +64,7 @@ class ComentarioFragment : Fragment() {
     }
 
 
-    fun getComentarios(comentarios: ArrayList<Comentario>){
-        val url = "http://172.29.65.234:1337/Comentario"
-        url.httpGet().responseString{request, response, result ->
-            when (result) {
-                is Result.Failure -> {
-                    val ex = result.getException()
-                }
-                is Result.Success -> {
-                    val data = result.get()
-                    comentarios.clear()
-                    val wordDict = Klaxon().parseArray<Comentario>(data)
-                    Log.i("http", "Datos: ${wordDict.toString()}")
-                    if (wordDict != null) {
-                        for ( coment in wordDict.iterator()){
-                                comentarios.add(coment)
-                        }
-                    }
 
-                }
-            }
-
-        }
-    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

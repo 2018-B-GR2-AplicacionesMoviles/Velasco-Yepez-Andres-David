@@ -90,6 +90,24 @@ class ModificarPeliculaActivity : AppCompatActivity() {
             }
         }
 
+        btn_load.setOnClickListener{
+            val intent = Intent()
+                    .setType("*/*")
+                    .setAction(Intent.ACTION_GET_CONTENT)
+            startActivityForResult(Intent.createChooser(intent, "Select a file"), 111)
+        }
+        /*
+            File f = new File(Environment.getExternalStorageDirectory()
+                 + File.separator + "test.jpg");
+     f.createNewFile();
+     //write the bytes in file
+     FileOutputStream fo = new FileOutputStream(f);
+     fo.write(outStream.toByteArray());
+     // remember close the FileOutput
+     fo.close();
+
+         */
+
 
     }
 

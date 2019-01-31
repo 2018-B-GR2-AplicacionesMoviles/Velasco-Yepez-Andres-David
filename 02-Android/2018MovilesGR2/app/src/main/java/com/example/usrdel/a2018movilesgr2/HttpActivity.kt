@@ -6,8 +6,8 @@ import android.util.Log
 import com.beust.klaxon.Klaxon
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
-import com.google.gson.Gson
-import javax.xml.transform.Result
+import com.github.kittinunf.result.Result
+import java.util.*
 
 class HttpActivity : AppCompatActivity() {
 
@@ -15,31 +15,50 @@ class HttpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http)
 
-        val url = "http://172.29.56.249:1337/Estudiante"
-        var gson = Gson()
-        val parametros = listOf("2" to "2")
+        val url = "http://172.31.105.224:1337/Estudiante"
+
+        val adrian = UsuarioHttpCreateDto("Vicente", "Eguez")
+        val adrianJson = Klaxon().toJsonString(adrian)
+        val parametros = listOf(
+                "nombre" to "Adrian",
+                "apellido" to "Eguez"
+        )
+
 
 
         url
                 .httpPost(parametros)
-                .responseString{ request, response, result ->
-                    Log.i("http","Request: $request")
-                    Log.i("http","Request: $response")
-                    Log.i("http","Request: $result")
+                .responseString { request, response, result ->
 
-                    when(result){
-                        is com.github.kittinunf.result.Result.Failure -> {
+                    when (result) {
+                        is Result.Failure -> {
                             val exepcion = result.getException()
-                            Log.i("http","Error: $exepcion")
+                            Log.i("http", "Error: ${exepcion}")
+                            Log.i("http", "Error: ${response}")
+
                         }
-                        is com.github.kittinunf.result.Result.Success ->{
-                            val data = result.get()
-                            //val usuarioClase = Klaxon().parse<UsuarioHttp>(usuarioString)
-                            Log.i("http","Datos: $data")
+                        is Result.Success -> {
+
+                            val usuarioString = result.get()
+
+                            val usuarioClase: UsuarioHttp? = Klaxon()
+                                    .parse<UsuarioHttp>(usuarioString)
+
+                            Log.i("http", "Datos: ${usuarioClase?.nombre}")
+
                         }
                     }
                 }
+
+
     }
 }
 
-class UsuarioHttp(var nombre:String, var apellido:String,var createdAt:Int,var updatedAt:Int,var id:Int){}
+class UsuarioHttp(var nombre: String,
+                  var apellido: String,
+                  var createdAt: Long? = null,
+                  var updatedAt: Long? = null,
+                  var id: Int? = null) {}
+
+class UsuarioHttpCreateDto(var nombre: String,
+                           var apellido: String) {}

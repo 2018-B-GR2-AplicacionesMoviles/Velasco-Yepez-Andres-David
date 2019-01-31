@@ -4,7 +4,17 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import com.beust.klaxon.Klaxon
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_navegation.*
+import java.util.*
+import kotlin.concurrent.schedule
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import java.net.URL
+
 
 class NavegationActivity : AppCompatActivity() {
 
@@ -23,7 +33,9 @@ class NavegationActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.comments_notifications ->{
+                getComentarios(BDD.comentarios)
                 crearFragmentoCuatro()
+
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -132,5 +144,31 @@ class NavegationActivity : AppCompatActivity() {
         fragmentoActual = primerFragmento
         fragmentTransaction.commit()
 
+    }
+    fun getComentarios(comentarios: ArrayList<Comentario>){
+        val url = "http://172.29.50.237:80/comentario/api/"
+        url.httpGet().responseString{request, response, result ->
+            when (result) {
+                is Result.Failure -> {
+                    val ex = result.getException()
+                }
+                is Result.Success -> {
+                    val data = result.get()
+                    comentarios.clear()
+                    val wordDict = Klaxon().parseArray<Comentario>(data)
+                    Log.i("http", "Datos: ${wordDict.toString()}")
+                    if (wordDict != null) {
+                        for ( coment in wordDict.iterator()){
+                            comentarios.add(coment)
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+        }
     }
 }

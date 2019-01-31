@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
 
-class SqliteHelper(context:Context?) :
+class SqliteHelper(context: Context?) :
         SQLiteOpenHelper(context,
                 "moviles", // Nombre de la base de datos
                 null,
@@ -103,20 +103,65 @@ class SqliteHelper(context:Context?) :
 
     }
 
-    fun eliminarUsuarioFormulario():Boolean{
-        val dbWriteable = this.writableDatabase
-        val parametros = arrayOf("1")
+    fun eliminarUsuarioFormulario(): Boolean {
+        val dbWriteable = writableDatabase
+
         val nombreTabla = "usuario"
         val clausulaWhere = "id = ?"
+        val parametros = arrayOf("1")
         val respuesta = dbWriteable.delete(
                 nombreTabla,
                 clausulaWhere,
                 parametros
         )
-        return  if(respuesta == -1 )false else true
+        return if (respuesta == -1) false else true
     }
 
 
+    /*
+    override fun onCreate(db: SQLiteDatabase?) {
+
+        val createTableSQL = "CREATE TABLE ${BaseDeDatos.BDD_TABLA_USUARIO_NOMBRE} (${BaseDeDatos.BDD_TABLA_USUARIO_CAMPO_ID} INTEGER PRIMARY KEY AUTOINCREMENT, ${BaseDeDatos.BDD_TABLA_USUARIO_CAMPO_NOMBRE} VARCHAR(50))"
+
+        db?.execSQL(createTableSQL)
+    }
+
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    fun insertarUsuario(nombre: String) {
+        val dbWriteable = writableDatabase
+        val cv = ContentValues()
+
+        cv.put(BaseDeDatos.BDD_TABLA_USUARIO_CAMPO_NOMBRE, nombre)
+
+        val resultado = dbWriteable.insert(BaseDeDatos.BDD_TABLA_USUARIO_NOMBRE, null, cv)
+
+        Log.i("database", "Si es -1 hubo error, sino exito: Respuesta: $resultado")
+
+        dbWriteable.close()
+
+    }
+
+    fun leerDatos() {
+        val dbReadable = readableDatabase
+
+        val query = "SELECT * FROM ${BaseDeDatos.BDD_TABLA_USUARIO_NOMBRE}"
+
+        val resultado = dbReadable.rawQuery(query, null)
+        if (resultado.moveToFirst()) {
+            do {
+                val idActual = resultado.getString(0).toInt()
+                val nombreActual = resultado.getString(1)
+                Log.i("database", "El nombre es $nombreActual con id $idActual")
+            } while (resultado.moveToNext())
+        }
+        resultado.close()
+        dbReadable.close()
+    }
+*/
 }
 
 
